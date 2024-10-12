@@ -1,8 +1,7 @@
 import json
 
-
 class LocationEntityResponse:
-
+    """ Location Entity Response DTO Class """
     def __init__(self, uuid, name, latitude, longitude, device_list):
         self.uuid = uuid
         self.name = name

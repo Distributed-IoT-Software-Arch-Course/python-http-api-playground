@@ -1,12 +1,14 @@
 from model.device_model import DeviceModel
 from model.location_model import LocationModel
 
-
 class DataManager:
+    """ Data Manager Class to manage the Location and Device Data """
+
+    # Initialize the data manager with an empty dictionary to store location data
     location_dictionary = {}
 
-    # LOCATION MANAGEMENT
     def add_location(self, new_location):
+        """ Store a new location """
 
         # Check the correct instance for the variable new_location
         if isinstance(new_location, LocationModel):
@@ -15,6 +17,7 @@ class DataManager:
             raise TypeError("Error adding new Location ! Only LocationModel are allowed !")
 
     def update_location(self, updated_location):
+        """ Update an existing location """
 
         # Check the correct instance for the variable updated_location
         if isinstance(updated_location, LocationModel):
@@ -23,12 +26,12 @@ class DataManager:
             raise TypeError("Error updating the Location ! Only LocationModel are allowed !")
 
     def remove_location(self, location_uuid):
+        """ Remove a stored location """
         if location_uuid in self.location_dictionary.keys():
             del self.location_dictionary[location_uuid]
 
-    # DEVICE MANAGEMENT
-
     def add_device(self, location_id, new_device):
+        """ Store a new device """
 
         # Check the correct instance for the variable new_device
         if isinstance(new_device, DeviceModel):
@@ -41,6 +44,8 @@ class DataManager:
             raise TypeError("Error adding new device ! Only DeviceModel are allowed !")
 
     def update_device(self, location_id, updated_device):
+        """ Update an existing device """
+
         # Check the correct instance for the variable new_device
         if isinstance(updated_device, DeviceModel):
             # Check if the required Location Id is correct
@@ -52,6 +57,7 @@ class DataManager:
             raise TypeError("Error adding new device ! Only DeviceModel are allowed !")
 
     def remove_device(self, location_id, device_uuid):
+        """ Remove a stored device """
 
         # Check if the required Location Id is correct
         if location_id in self.location_dictionary:

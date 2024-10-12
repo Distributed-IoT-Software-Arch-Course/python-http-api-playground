@@ -1,9 +1,8 @@
-from model.device_model import DeviceModel
 import json
-
 
 class DeviceUpdateRequest:
 
+    """ Device Update Request DTO """
     def __init__(self, uuid, name, device_type, manufacturer, software_version, latitude, longitude):
         self.uuid = uuid
         self.name = name
@@ -14,4 +13,5 @@ class DeviceUpdateRequest:
         self.longitude = longitude
 
     def to_json(self):
+        """ Serialize the Device Update Request to a JSON string """
         return json.dumps(self, default=lambda o: o.__dict__)

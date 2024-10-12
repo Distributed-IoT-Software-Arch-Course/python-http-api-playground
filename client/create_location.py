@@ -16,6 +16,8 @@ request_dictionary = {
 # Send the POST Request with the body serialized as Json (Internally managed by the library)
 response = requests.post(api_url, json=request_dictionary)
 
+# Read Status code and Location Header
 location_header = response.headers["Location"]
 
+# Print the response with the Location Header, the status code and the buffer body
 print(f'HTTP Response Code: {response.status_code} - Buffer Body: {response.content} - Location Header: {location_header}')

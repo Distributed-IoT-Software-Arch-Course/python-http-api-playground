@@ -1,8 +1,7 @@
 import json
 
-
 class LocationCreationRequest:
-
+    """ Location Creation Request DTO """
     def __init__(self, uuid, name, latitude, longitude):
         self.uuid = uuid
         self.name = name
@@ -10,4 +9,5 @@ class LocationCreationRequest:
         self.longitude = longitude
 
     def to_json(self):
+        """ Serialize the Location Creation Request to a JSON string """
         return json.dumps(self, default=lambda o: o.__dict__)
