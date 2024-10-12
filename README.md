@@ -62,24 +62,25 @@ In the current implementation device's data (e.g., temperature values or actuato
 
 The project is structured as follows:
 
-- **api_server.py**: The main entry point of the project. It contains the Flask application and the API resources.
-- **resources**: Contains the API resources for the locations and devices. Detailed in the following files:
+- **Server Application**:    
+  - **api_server.py**: The main entry point of the project. It contains the Flask application and the API resources.
+- **Resources**: Contains the API resources for the locations and devices. Detailed in the following files:
   - **locations_resource.py**: Contains the LocationsResource class that handles the list of devices resource.
   - **location_resource.py**: Contains the LocationResource class that handles the device resources.
   - **devices_resource.py**: Contains the DevicesResource class that handles the list of devices resource.
   - **device_resource.py**: Contains the DeviceResource class that handles the device resources.
-- **models**: Contains the data models for the locations and devices. Detailed in the following files:
+- **Models**: Contains the data models for the locations and devices. Detailed in the following files:
   - **location_model.py**: Contains the Location class that represents a location.
   - **device_model.py**: Contains the Device class that represents a device.
-- **dto**: Contains the Data Transfer Objects (DTOs) for the locations and devices. Detailed in the following files:
+- **DTO**: Contains the Data Transfer Objects (DTOs) for the locations and devices. Detailed in the following files:
   - **device_creation_request.py**: Contains the DeviceCreationRequest class that represents the request to create a device.
   - **device_update_request.py**: Contains the DeviceUpdateRequest class that represents the request to update a device. 
   - **location_creation_request.py**: Contains the LocationCreationRequest class that represents the request to create a location. 
   - **location_entity_response.py**: Contains the LocationEntityResponse class that represents the response of a location entity. 
   - **location_update_request.py**: Contains the LocationUpdateRequest class that represents the request to update a location.
-- **persistance**: Contains the data access layer for the locations and devices. Detailed in the following file:
+- **Persistence**: Contains the data access layer for the locations and devices. Detailed in the following file:
   - **data_manager.py**: Contains the DataManager class that handles the data access layer for the locations and devices.
-- **client**: Contains the client to interact with the API. Detailed in the following file:
+- **Clients**: Contains the client to interact with the API. Detailed in the following file:
   - **create_and_get_location.py**: Implements the client to create a location and get the list of locations through the implemented API.
   - **create_location.py**: Implements the client to create a location through the implemented API.
   - **delete_location.py**: Implements the client to delete a location through the implemented API.
