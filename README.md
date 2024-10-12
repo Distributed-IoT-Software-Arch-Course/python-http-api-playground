@@ -38,22 +38,22 @@ file and clicking on the "Install requirements" popup and link or manually going
 ## Modeled REST Resources
 
 - **/location**
-  - **GET**: Returns the list of available locations
-  - **POST**: Handles the creation of a new location
+  - _GET_: Returns the list of available locations
+  - _POST_: Handles the creation of a new location
 
 - **/location/<location_id>**
-  - **GET**: Returns the target location with the specified `location_id`
-  - **PUT**: Updates the target location with the specified `location_id`
-  - **DELETE**: Deletes the target location with the specified `location_id`
+  - _GET_: Returns the target location with the specified `location_id`
+  - _PUT_: Updates the target location with the specified `location_id`
+  - _DELETE_: Deletes the target location with the specified `location_id`
 
--**/location/<location_id>/device**
-- **GET**: Returns the list of devices for the specified `location_id`
-  - **POST**: Creates a new device for the specified `location_id`
+- **/location/<location_id>/device**
+  - _GET_: Returns the list of devices for the specified `location_id`
+  - _POST_: Creates a new device for the specified `location_id`
 
 - **/location/<location_id>/device/<device_id>**
-  - **GET**: Returns the target device with the specified `device_id` associated with the specified `location_id`
-  - **PUT**: Updates the target device with the specified `device_id` associated with the specified `location_id`
-  - **DELETE**: Deletes the target device with the specified `device_id` associated with the specified `location_id`
+  - _GET_: Returns the target device with the specified `device_id` associated with the specified `location_id`
+  - _PUT_: Updates the target device with the specified `device_id` associated with the specified `location_id`
+  - _DELETE_: Deletes the target device with the specified `device_id` associated with the specified `location_id`
 
 A string like `<location_id>` or `<device_id>` is a placeholder for the actual location or device identifier.
 In the current implementation device's data (e.g., temperature values or actuator status) are not handled and they are out of the scope of the demo inventory.
@@ -63,30 +63,30 @@ In the current implementation device's data (e.g., temperature values or actuato
 The project is structured as follows:
 
 - **Server Application**:    
-  - **api_server.py**: The main entry point of the project. It contains the Flask application and the API resources.
+  - _api_server.py_: The main entry point of the project. It contains the Flask application and the API resources.
 - **Resources**: Contains the API resources for the locations and devices. Detailed in the following files:
-  - **locations_resource.py**: Contains the LocationsResource class that handles the list of devices resource.
-  - **location_resource.py**: Contains the LocationResource class that handles the device resources.
-  - **devices_resource.py**: Contains the DevicesResource class that handles the list of devices resource.
-  - **device_resource.py**: Contains the DeviceResource class that handles the device resources.
+  - _locations_resource.py_: Contains the LocationsResource class that handles the list of devices resource.
+  - _location_resource.py_: Contains the LocationResource class that handles the device resources.
+  - _devices_resource.py_: Contains the DevicesResource class that handles the list of devices resource.
+  - _device_resource.py_: Contains the DeviceResource class that handles the device resources.
 - **Models**: Contains the data models for the locations and devices. Detailed in the following files:
-  - **location_model.py**: Contains the Location class that represents a location.
-  - **device_model.py**: Contains the Device class that represents a device.
+  - _location_model.py_: Contains the Location class that represents a location.
+  - _device_model.py_: Contains the Device class that represents a device.
 - **DTO**: Contains the Data Transfer Objects (DTOs) for the locations and devices. Detailed in the following files:
-  - **device_creation_request.py**: Contains the DeviceCreationRequest class that represents the request to create a device.
-  - **device_update_request.py**: Contains the DeviceUpdateRequest class that represents the request to update a device. 
-  - **location_creation_request.py**: Contains the LocationCreationRequest class that represents the request to create a location. 
-  - **location_entity_response.py**: Contains the LocationEntityResponse class that represents the response of a location entity. 
-  - **location_update_request.py**: Contains the LocationUpdateRequest class that represents the request to update a location.
+  - _device_creation_request.py_: Contains the DeviceCreationRequest class that represents the request to create a device.
+  - _device_update_request.py_: Contains the DeviceUpdateRequest class that represents the request to update a device. 
+  - _location_creation_request.py_: Contains the LocationCreationRequest class that represents the request to create a location. 
+  - _location_entity_response.py_: Contains the LocationEntityResponse class that represents the response of a location entity. 
+  - _location_update_request.py_: Contains the LocationUpdateRequest class that represents the request to update a location.
 - **Persistence**: Contains the data access layer for the locations and devices. Detailed in the following file:
-  - **data_manager.py**: Contains the DataManager class that handles the data access layer for the locations and devices.
+  - _data_manager.py_: Contains the DataManager class that handles the data access layer for the locations and devices.
 - **Clients**: Contains the client to interact with the API. Detailed in the following file:
-  - **create_and_get_location.py**: Implements the client to create a location and get the list of locations through the implemented API.
-  - **create_location.py**: Implements the client to create a location through the implemented API.
-  - **delete_location.py**: Implements the client to delete a location through the implemented API.
-  - **get_location_list.py**: Implements the client to get the list of locations through the implemented API.
-  - **get_single_location.py**: Implements the client to get a single location through the implemented API.
-  - **update_location.py**: Implements the client to update a location through the implemented API.
+  - _create_and_get_location.py_: Implements the client to create a location and get the list of locations through the implemented API.
+  - _create_location.py_: Implements the client to create a location through the implemented API.
+  - _delete_location.py_: Implements the client to delete a location through the implemented API.
+  - _get_location_list.py_: Implements the client to get the list of locations through the implemented API.
+  - _get_single_location.py_: Implements the client to get a single location through the implemented API.
+  - _update_location.py_: Implements the client to update a location through the implemented API.
 
 ## Running the Project
 
