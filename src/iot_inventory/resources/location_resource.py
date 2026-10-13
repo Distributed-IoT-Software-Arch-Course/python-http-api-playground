@@ -1,9 +1,9 @@
 from json import JSONDecodeError
 from flask import request, Response
 from flask_restful import Resource
-from dto.location_entity_response import LocationEntityResponse
-from dto.location_update_request import LocationUpdateRequest
-from model.location_model import LocationModel
+from iot_inventory.dto.location_entity_response import LocationEntityResponse
+from iot_inventory.dto.location_update_request import LocationUpdateRequest
+from iot_inventory.model.location_model import LocationModel
 
 
 class LocationResource(Resource):

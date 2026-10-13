@@ -1,8 +1,8 @@
 from json import JSONDecodeError
 from flask import request, Response
 from flask_restful import Resource, reqparse
-from dto.device_creation_request import DeviceCreationRequest
-from model.device_model import DeviceModel
+from iot_inventory.dto.device_creation_request import DeviceCreationRequest
+from iot_inventory.model.device_model import DeviceModel
 
 class DevicesResource(Resource):
     """ Devices Resource Class """

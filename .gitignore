@@ -71,8 +71,7 @@ target/
 # IPython Notebook
 .ipynb_checkpoints
 
-# pyenv
-.python-version
+# pyenv (.python-version is tracked: it pins the interpreter used by uv)
 
 # celery beat schedule file
 celerybeat-schedule
@@ -150,3 +149,6 @@ crashlytics.properties
 crashlytics-build.properties
 fabric.properties
 
+
+# macOS
+.DS_Store

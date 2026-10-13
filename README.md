@@ -20,20 +20,41 @@ The implementation is based on the following Python Frameworks
 
 APIs are exposed through a configurable port (7070) and accessible locally at: http://127.0.0.1:7070/api/iot/
 
-The `requirements.txt` file contains the required dependencies to run the project.
-If you are using a virtual environment, you can install the dependencies by running:
+The project is managed with [uv](https://docs.astral.sh/uv/). Dependencies are declared in `pyproject.toml`,
+locked in `uv.lock`, and the Python version (3.12) is pinned in `.python-version`.
+
+- Server dependencies: `flask`, `flask-restful`
+- Client dependencies (dependency group `client`, installed by default): `requests`
+
+Install uv (if needed) following the [official instructions](https://docs.astral.sh/uv/getting-started/installation/), e.g.:
+
+```bash
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+Then, from the project root, create the virtual environment (`.venv`) and install all the dependencies with:
+
+```bash
+uv sync
+```
+
+uv automatically downloads the required Python version if it is not available on your machine.
+
+In PyCharm, you can select the existing `.venv` interpreter or add a new "uv" interpreter from the interpreter settings.
+
+### Using pip (alternative)
+
+The `requirements.txt` file is **generated** from `uv.lock` and is kept only for pip-based workflows:
 
 ```bash
 pip install -r requirements.txt
 ```
-or in case of Python 3.7+:
+
+Do not edit it manually. After changing the dependencies, regenerate it with:
 
 ```bash
-pip3 install -r requirements.txt
+uv export --no-hashes --no-dev --group client -o requirements.txt
 ```
-
-Otherwise in PyCharms, you can install the dependencies by opening the `requirements.txt` 
-file and clicking on the "Install requirements" popup and link or manually going to the package manager.
 
 ## Modeled REST Resources
 
@@ -60,10 +81,31 @@ In the current implementation device's data (e.g., temperature values or actuato
 
 ## Project Structure
 
-The project is structured as follows:
+The project follows the `src` layout: the server code is the `iot_inventory` package in `src/`,
+while the clients are standalone example scripts outside the package.
 
-- **Server Application**:    
-  - _api_server.py_: The main entry point of the project. It contains the Flask application and the API resources.
+```
+python-http-api-playground/
+├── pyproject.toml          # Project metadata, dependencies and entry points
+├── uv.lock                 # Locked dependency versions (managed by uv)
+├── requirements.txt        # Generated from uv.lock for pip users
+├── src/iot_inventory/      # Server application package
+│   ├── __main__.py         # Enables: python -m iot_inventory
+│   ├── api_server.py       # create_server_app() factory and main() entry point
+│   ├── dto/
+│   ├── model/
+│   ├── persistence/
+│   └── resources/
+├── client/                 # Standalone HTTP client examples (requests)
+├── tests/                  # Test scripts
+└── postman/                # Postman collection
+```
+
+- **Server Application** (`src/iot_inventory`):
+  - _api_server.py_: The main entry point of the project. It contains:
+    - `create_server_app()`: the Flask App Factory that creates the application and registers the API resources. Importing the module has no side effects and each call returns a new, independent app (useful for testing with `app.test_client()`).
+    - `load_demo_data()`: adds a demo location and a demo device to the Data Manager.
+    - `main()`: loads the demo data, creates the app and starts the server on port 7070.
 - **Resources**: Contains the API resources for the locations and devices. Detailed in the following files:
   - _locations_resource.py_: Contains the LocationsResource class that handles the list of devices resource.
   - _location_resource.py_: Contains the LocationResource class that handles the device resources.
@@ -90,8 +132,35 @@ The project is structured as follows:
 
 ## Running the Project
 
-To run the project, you can execute the `api_server.py` file.
+The server is exposed as a command (`iot-inventory-server`) declared in the `[project.scripts]` section
+of `pyproject.toml`. From the project root run:
+
+```bash
+uv run iot-inventory-server
+```
+
+Alternatively, you can run it as a module or execute the file directly:
+
+```bash
+uv run python -m iot_inventory
+uv run src/iot_inventory/api_server.py
+```
+
 The server will start and expose the API resources through the configured port by default (7070).
+
+Since the app is built through the `create_server_app()` factory, it can also be started with the Flask CLI
+(note that in this case the demo data are not loaded):
+
+```bash
+uv run flask --app "iot_inventory.api_server:create_server_app()" run --port 7070
+```
+
+With the server running, you can execute any of the clients in another terminal, e.g.:
+
+```bash
+uv run client/create_location.py
+uv run client/get_location_list.py
+```
 
 ## Postman Collection
 

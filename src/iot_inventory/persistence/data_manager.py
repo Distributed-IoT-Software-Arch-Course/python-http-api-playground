@@ -1,5 +1,5 @@
-from model.device_model import DeviceModel
-from model.location_model import LocationModel
+from iot_inventory.model.device_model import DeviceModel
+from iot_inventory.model.location_model import LocationModel
 
 class DataManager:
     """ Data Manager Class to manage the Location and Device Data """
