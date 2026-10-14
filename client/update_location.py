@@ -1,7 +1,5 @@
 import requests
 
-import requests
-
 #
 target_location_id = "l0001"
 
